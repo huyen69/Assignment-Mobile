@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_color"
+    tools:context=".settingActivity">
+
+    <!-- Nội dung quy tắc chơi -->
+    <TextView
+        android:id="@+id/txtRules"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="18sp"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@android:color/white"
+        android:textAlignment="viewStart"
+        android:text="📜 LUẬT CHƠI - QUIZ APP\n\n1️⃣ Quy tắc chung:\n- Mỗi câu hỏi có 4 lựa chọn và chỉ có 1 đáp án đúng.\n- Không thể quay lại câu hỏi trước đó sau khi đã chọn đáp án.\n2️⃣ Cách tính điểm:\n✅ Trả lời đúng: +1 điểm\n❌ Trả lời sai: 0 điểm\n➖ Bỏ qua câu hỏi: Không cộng điểm\n- Hoàn thành tất cả câu hỏi sẽ hiển thị tổng điểm cuối cùng.\n3️⃣ Thời gian trả lời:\n- Mỗi câu hỏi có giới hạn 30 giây để trả lời.\n- Hết thời gian mà chưa chọn đáp án => Tự động chọn bỏ qua 🚀."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Thông tin hỗ trợ -->
+    <TextView
+        android:id="@+id/txtSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📧 Liên hệ hỗ trợ: support@quizapp.com"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRules"
+        android:layout_margin="16dp" />
+
+    <!-- Nút quay lại (Back) bên trái -->
+
+    <!-- Nút gửi email hỗ trợ (Bên phải) -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="67dp"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Quay lại"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnContactSupport"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:layout_marginEnd="28dp"-->
+<!--        android:layout_marginBottom="104dp"-->
+<!--        android:text="📨 Gửi Email Hỗ Trợ"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
