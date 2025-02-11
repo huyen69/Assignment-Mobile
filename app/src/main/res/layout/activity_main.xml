@@ -59,8 +59,7 @@
             android:textSize="20sp"
             android:padding="8dp"
             android:onClick="main_btn"
-
-            android:text="Setting" />
+            android:text="Game Rule" />
 
         <Button
             android:id="@+id/btn_exit"
