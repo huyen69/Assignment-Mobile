@@ -19,7 +19,7 @@
         android:textColor="@android:color/white"
         android:textAlignment="viewStart"
         android:fontFamily="@font/chakrapetchbold"
-        android:text="📜 LUẬT CHƠI - QUIZ APP\n1️⃣ Quy tắc chung:\n- Mỗi câu hỏi có 4 lựa chọn và chỉ có 1 đáp án đúng.\n- Không thể quay lại câu hỏi trước đó sau khi đã chọn đáp án.\n2️⃣ Cách tính điểm:\n✅ Trả lời đúng: +1 điểm\n❌ Trả lời sai: 0 điểm\n➖ Bỏ qua câu hỏi: Không cộng điểm\n- Hoàn thành tất cả câu hỏi sẽ hiển thị tổng điểm cuối cùng.\n3️⃣ Thời gian trả lời:\n- Mỗi câu hỏi có giới hạn 30 giây để trả lời.\n- Hết thời gian mà chưa chọn đáp án => Tự động chọn bỏ qua 🚀."
+        android:text="📜 LUẬT CHƠI - QUIZ APP\n1. Quy tắc chung:\n- Mỗi câu hỏi có 4 lựa chọn và chỉ có 1 đáp án đúng.\n- Không thể quay lại câu hỏi trước đó sau khi đã chọn đáp án.\n2. Cách tính điểm:\n✅ Trả lời đúng: +1 điểm\n❌ Trả lời sai: 0 điểm\n➖ Bỏ qua câu hỏi: Không cộng điểm\n- Hoàn thành tất cả câu hỏi sẽ hiển thị tổng điểm cuối cùng.\n3. Thời gian trả lời:\n- Mỗi câu hỏi có giới hạn 30 giây để trả lời.\n- Hết thời gian mà chưa chọn đáp án => Tự động chọn bỏ qua 🚀."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

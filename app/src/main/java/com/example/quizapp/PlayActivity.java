@@ -13,6 +13,7 @@ import java.util.Collections;
 import android.os.CountDownTimer;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.ImageView;
 
 public class PlayActivity extends AppCompatActivity {
     ArrayList<Question> questionList = new ArrayList<>();
@@ -20,6 +21,7 @@ public class PlayActivity extends AppCompatActivity {
 
     TextView cpt_question, text_question, timerTextView;
     Button btn_choose1, btn_choose2, btn_choose3, btn_choose4, btn_next;
+    ImageView image_back; // Thêm ImageView
 
     int currentQuestion = 0;
     int scorePlayer = 0;
@@ -38,6 +40,7 @@ public class PlayActivity extends AppCompatActivity {
         cpt_question = findViewById(R.id.cpt_question);
         text_question = findViewById(R.id.text_question);
         timerTextView = findViewById(R.id.timerTextView); // Thêm TextView hiển thị thời gian
+        image_back = findViewById(R.id.image_back); // Ánh xạ ImageView
 
         btn_choose1 = findViewById(R.id.btn_choose1);
         btn_choose2 = findViewById(R.id.btn_choose2);
@@ -45,14 +48,29 @@ public class PlayActivity extends AppCompatActivity {
         btn_choose4 = findViewById(R.id.btn_choose4);
         btn_next = findViewById(R.id.btn_next);
 
-        findViewById(R.id.image_back).setOnClickListener(a -> finish());
 
         populateQuestions();
         Collections.shuffle(questionList);
-        selectedQuestions.addAll(questionList.subList(0, 20)); // Chọn 10 câu hỏi ngẫu nhiên
-
+        selectedQuestions.addAll(questionList.subList(0, 10)); // Chọn 10 câu hỏi ngẫu nhiên
         loadQuestion();
         startTimer(); // Bắt đầu đếm giờ
+
+
+        // Xử lý sự kiện click cho ImageView
+        image_back.setOnClickListener(a -> {
+            new AlertDialog.Builder(this)
+                    .setTitle("Thoát ứng dụng?")
+                    .setMessage("Nếu bạn thoát bài kiểm tra khi chưa làm xong thì bài kiểm tra sẽ không được lưu")
+                    .setPositiveButton("Có", (dialog, which) -> {
+                        finish(); // Kết thúc Activity và quay lại màn hình trước
+                    })
+                    .setNegativeButton("Không", (dialog, which) -> {
+                        dialog.dismiss(); // Đóng hộp thoại và ở lại Activity
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        });
+
 
         btn_next.setOnClickListener(view -> {
             if (isclickBtn) {
@@ -62,7 +80,7 @@ public class PlayActivity extends AppCompatActivity {
                     showPopup("Sai rồi! Câu trả lời đúng là: " + selectedQuestions.get(currentQuestion).getCorrectAnswer(), false);
                     btn_click.setBackgroundResource(R.drawable.background_btn_erreur);
                 } else {
-                    showPopup("Chính xác!", true);
+//                    showPopup("Chính xác!", true);
                     btn_click.setBackgroundResource(R.drawable.background_btn_correct);
                     scorePlayer++;
                 }
@@ -81,7 +99,7 @@ public class PlayActivity extends AppCompatActivity {
                     }
                 }, 2000);
             } else {
-                Toast.makeText(PlayActivity.this, "Chọn đáp án trước khi tiếp tục!", Toast.LENGTH_LONG).show();
+//                Toast.makeText(PlayActivity.this, "Chọn đáp án trước khi tiếp tục!", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -136,7 +154,6 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     void populateQuestions() {
-        questionList.add(new Question("Ca sĩ nào đã bị đồn là bỏ con ?", "Jack", "J97", "Trịnh Trần Phương Tuấn", "Tất cả đều đúng", "Tất cả đều đúng"));
         questionList.add(new Question("Bài hát 'Enchanted' là của ai?", "Taylor Swift", "Ed Sheeran", "Adele", "Justin Bieber", "Taylor Swift"));
         questionList.add(new Question("Cristiano Ronaldo giành bao nhiêu Champions League tại Real Madrid?", "1", "2", "4", "5", "4"));
         questionList.add(new Question("Thủ đô của Pháp là gì?", "Berlin", "Madrid", "Paris", "Rome", "Paris"));
@@ -177,6 +194,44 @@ public class PlayActivity extends AppCompatActivity {
         questionList.add(new Question("Trái Đất quay quanh Mặt Trời mất bao lâu?", "365 ngày", "366 ngày", "24 giờ", "30 ngày", "365 ngày"));
         questionList.add(new Question("Mạng xã hội nào có nhiều người dùng nhất năm 2023?", "Instagram", "Twitter", "Facebook", "TikTok", "Facebook"));
         questionList.add(new Question("Nước nào có nhiều múi giờ nhất?", "Mỹ", "Nga", "Pháp", "Trung Quốc", "Pháp"));
+        questionList.add(new Question("Động vật nào có thể tái sinh nhiều bộ phận cơ thể?", "Sao biển", "Cá mập", "Bạch tuộc", "Ếch", "Sao biển"));
+        questionList.add(new Question("Cầu thủ nào có nhiều Quả bóng vàng nhất tính đến 2023?", "Lionel Messi", "Cristiano Ronaldo", "Neymar", "Luka Modric", "Lionel Messi"));
+        questionList.add(new Question("Nước nào tổ chức World Cup 2022?", "Qatar", "Nga", "Brazil", "Mỹ", "Qatar"));
+        questionList.add(new Question("Thành phần chính của khí quyển Trái Đất là gì?", "Oxy", "Nitơ", "CO2", "Hidro", "Nitơ"));
+        questionList.add(new Question("Hình học nào có ba cạnh?", "Hình vuông", "Hình tròn", "Hình tam giác", "Hình chữ nhật", "Hình tam giác"));
+        questionList.add(new Question("Hệ điều hành nào do Google phát triển?", "Windows", "iOS", "Android", "Linux", "Android"));
+        questionList.add(new Question("Nước nào nổi tiếng với kim tự tháp?", "Trung Quốc", "Ấn Độ", "Ai Cập", "Mexico", "Ai Cập"));
+        questionList.add(new Question("Bộ truyện nào có nhân vật Conan Edogawa?", "Naruto", "Dragon Ball", "Detective Conan", "One Piece", "Detective Conan"));
+        questionList.add(new Question("Nước nào có nền kinh tế lớn nhất thế giới?", "Trung Quốc", "Nhật Bản", "Mỹ", "Đức", "Mỹ"));
+        questionList.add(new Question("Tác phẩm 'Bố Già' do ai viết?", "Dan Brown", "Mario Puzo", "J.K. Rowling", "Stephen King", "Mario Puzo"));
+        questionList.add(new Question("Tháng nào có ngày 29 trong năm nhuận?", "Tháng 2", "Tháng 4", "Tháng 6", "Tháng 12", "Tháng 2"));
+        questionList.add(new Question("Quốc kỳ của Nhật Bản có màu gì?", "Đỏ và trắng", "Xanh và trắng", "Đỏ và đen", "Vàng và đỏ", "Đỏ và trắng"));
+        questionList.add(new Question("Động vật nào nhanh nhất trên cạn?", "Báo gê-pa", "Ngựa", "Hươu", "Sư tử", "Báo gê-pa"));
+        questionList.add(new Question("Ai là người sáng lập Tesla?", "Bill Gates", "Jeff Bezos", "Elon Musk", "Steve Jobs", "Elon Musk"));
+        questionList.add(new Question("Tỷ phú nào giàu nhất thế giới năm 2023?", "Elon Musk", "Jeff Bezos", "Bernard Arnault", "Bill Gates", "Bernard Arnault"));
+        questionList.add(new Question("Bộ phim hoạt hình nào có nhân vật chính là chú nai Bambi?", "The Lion King", "Frozen", "Bambi", "Zootopia", "Bambi"));
+        questionList.add(new Question("Châu lục nào lớn nhất thế giới?", "Châu Âu", "Châu Á", "Châu Mỹ", "Châu Phi", "Châu Á"));
+        questionList.add(new Question("Nhạc sĩ nào viết bài 'Yesterday'?", "John Lennon", "Paul McCartney", "Elvis Presley", "Michael Jackson", "Paul McCartney"));
+        questionList.add(new Question("Cơ quan nào bơm máu đi khắp cơ thể?", "Phổi", "Gan", "Trái tim", "Não", "Trái tim"));
+        questionList.add(new Question("Từ nào dùng để chỉ 1.000 GB?", "KB", "MB", "TB", "PB", "TB"));
+        questionList.add(new Question("Tên của chiến tranh thế giới đầu tiên?", "Chiến tranh thế giới I", "Chiến tranh thế giới II", "Chiến tranh lạnh", "Chiến tranh Napoleon", "Chiến tranh thế giới I"));
+        questionList.add(new Question("Phần mềm nào được dùng để soạn thảo văn bản?", "Excel", "PowerPoint", "Word", "Photoshop", "Word"));
+        questionList.add(new Question("Người Việt Nam đầu tiên bay vào vũ trụ?", "Phạm Tuân", "Nguyễn Thành Trung", "Võ Nguyên Giáp", "Trần Đại Nghĩa", "Phạm Tuân"));
+        questionList.add(new Question("Bức tranh 'Mona Lisa' do ai vẽ?", "Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Claude Monet", "Leonardo da Vinci"));
+        questionList.add(new Question("Công thức hóa học của nước là gì?", "H2O", "CO2", "O2", "CH4", "H2O"));
+        questionList.add(new Question("Ai là tác giả của 'Đắc Nhân Tâm'?", "Dale Carnegie", "Napoleon Hill", "Robin Sharma", "Brian Tracy", "Dale Carnegie"));
+        questionList.add(new Question("Quốc gia nào có hình dạng giống chiếc ủng?", "Pháp", "Ý", "Tây Ban Nha", "Hy Lạp", "Ý"));
+        questionList.add(new Question("Phần mềm nào thuộc Adobe?", "Excel", "PowerPoint", "Photoshop", "Chrome", "Photoshop"));
+        questionList.add(new Question("Bộ phim 'Avengers: Endgame' thuộc hãng phim nào?", "Warner Bros", "Disney", "Marvel Studios", "Universal", "Marvel Studios"));
+        questionList.add(new Question("Tên viết tắt của tổ chức Y tế Thế giới là gì?", "UNESCO", "WHO", "FIFA", "WTO", "WHO"));
+        questionList.add(new Question("Bộ phim nào có câu thoại nổi tiếng 'I am your father'?", "Star Wars", "Harry Potter", "The Lord of the Rings", "Avatar", "Star Wars"));
+        questionList.add(new Question("Ngôi sao nào gần Trái Đất nhất?", "Alpha Centauri", "Mặt Trời", "Sao Hỏa", "Sao Kim", "Mặt Trời"));
+        questionList.add(new Question("Động vật nào có thể thay đổi màu da?", "Chó", "Mèo", "Tắc kè hoa", "Báo đốm", "Tắc kè hoa"));
+        questionList.add(new Question("Kênh đào Panama nối liền hai đại dương nào?", "Đại Tây Dương và Ấn Độ Dương", "Thái Bình Dương và Đại Tây Dương", "Ấn Độ Dương và Bắc Băng Dương", "Bắc Băng Dương và Thái Bình Dương", "Thái Bình Dương và Đại Tây Dương"));
+        questionList.add(new Question("Tác giả của 'Nhà Giả Kim' là ai?", "J.K. Rowling", "Paulo Coelho", "Haruki Murakami", "Dan Brown", "Paulo Coelho"));
+        questionList.add(new Question("Sông nào chảy qua TP. Hồ Chí Minh?", "Sông Hồng", "Sông Sài Gòn", "Sông Đồng Nai", "Sông Cửu Long", "Sông Sài Gòn"));
+        questionList.add(new Question("Ca sĩ nào nổi tiếng với ca khúc 'Shape of You'?", "Justin Bieber", "Shawn Mendes", "Ed Sheeran", "Charlie Puth", "Ed Sheeran"));
+        questionList.add(new Question("Quốc gia nào phát minh ra sushi?", "Hàn Quốc", "Nhật Bản", "Trung Quốc", "Việt Nam", "Nhật Bản"));
 
     }
 
